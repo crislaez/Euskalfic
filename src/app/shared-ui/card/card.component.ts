@@ -26,7 +26,7 @@ import { errorImage, sliceDate, sliceText } from '@euskalfic/shared/utils/funcio
              : from === 'incidences' ? $any(item)?.incidenceType
              : from === 'flows' ? $any(item)?.type
              : from === 'source' ? $any(item)?.descripcionEs
-             : ''
+             : '-'
             )
           }}
           </span>
@@ -41,7 +41,7 @@ import { errorImage, sliceDate, sliceText } from '@euskalfic/shared/utils/funcio
                   from === 'cameras' ? sliceText($any(item)?.address, 15)
                 : from === 'incidences' ? $any(item)?.road
                 : from === 'flows' ? $any(item)?.properties?.province
-                : ''
+                : '-'
               }}
             </ion-label>
           </ion-chip>
@@ -52,7 +52,7 @@ import { errorImage, sliceDate, sliceText } from '@euskalfic/shared/utils/funcio
                     from === 'cameras' ? $any(item)?.road
                   : from === 'incidences' ? sliceDate($any(item)?.startDate)
                   : from === 'flows' ? $any(item)?.properties?.municipality
-                  : ''
+                  : '-'
                 )
               }}
             </ion-label>
@@ -65,9 +65,9 @@ import { errorImage, sliceDate, sliceText } from '@euskalfic/shared/utils/funcio
           </ion-avatar>
 
           <div *ngIf="['incidences','flows']?.includes(from)" class="icon-wrapper displays-center">
-            <ion-chip *ngIf="['incidences']?.includes(from)" class="text-color-light"> <ion-label>{{ $any(item)?.autonomousRegion }}</ion-label></ion-chip>
-            <ion-chip *ngIf="['incidences']?.includes(from)" class="text-color-light"> <ion-label>{{ $any(item)?.province }}</ion-label></ion-chip>
-            <ion-chip *ngIf="['flows']?.includes(from)" class="text-color-light heigth-min"> <ion-label>{{ $any(item)?.properties?.description }}</ion-label></ion-chip>
+            <ion-chip *ngIf="['incidences']?.includes(from)" class="text-color-light"> <ion-label>{{ $any(item)?.autonomousRegion || '-' }}</ion-label></ion-chip>
+            <ion-chip *ngIf="['incidences']?.includes(from)" class="text-color-light"> <ion-label>{{ $any(item)?.province || '-' }}</ion-label></ion-chip>
+            <ion-chip *ngIf="['flows']?.includes(from)" class="text-color-light heigth-min"> <ion-label>{{ $any(item)?.properties?.description || '-' }}</ion-label></ion-chip>
           </div>
         </div>
       </ng-container>
