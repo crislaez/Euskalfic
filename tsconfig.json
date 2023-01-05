@@ -19,10 +19,15 @@
     "target": "es2015",
     "module": "es2020",
     "lib": [
-      "es2018", 
+      "es2018",
       "dom"
     ],
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "paths":{
+      "@euskalfic/shared/*": ["./src/app/shared/*"],
+      "@euskalfic/core/*": ["./src/app/core/*"],
+      "@euskalfic/shared-ui/*": ["./src/app/shared-ui/*"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
