@@ -1,0 +1,7 @@
+{
+  "name": "euskalfic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
