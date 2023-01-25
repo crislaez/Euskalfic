@@ -1,7 +1,7 @@
 @import '../../../theme/variables';
 
 :host{
-  width: 94%;
+  width: 48%;
 
   ion-card{
     min-height: 7em;
@@ -52,22 +52,13 @@
       }
 
       .set-item-types{
-        width: 52%;
+        // width: 52%;
         margin-top: 10px;
       }
 
       .icon-wrapper {
         margin: 0 auto;
         margin-top: 10px;
-
-        ion-chip{
-          // height: 50px;
-
-          // ion-label{
-          //   padding-top: 5px;
-          //   padding-bottom: 5px;
-          // }
-        }
       }
     }
 
@@ -79,10 +70,8 @@
     }
 
     ion-chip{
-      width: 100%;
+      width: 94%;
       height: 20px;
-      // box-shadow: 1px 1px 7px grey;
-      // background: $fifthiary;
       background: rgba(255, 255, 255, 0.15);
 
       ion-label{
@@ -92,4 +81,12 @@
     }
   }
 
+}
+
+.w-52{
+  width: 52%;
+}
+
+.w-94{
+  width: 94%;
 }

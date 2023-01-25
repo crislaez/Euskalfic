@@ -21,7 +21,7 @@ import { concatLatestFrom } from '@ngrx/effects';
     </div>
 
     <div class="container components-background-dark">
-      <h1 class="text-color-dark">{{ 'COMMON.INCIDENCES' | translate }}</h1>
+      <h1 class="text-color-gradient">{{ 'COMMON.INCIDENCES' | translate }}</h1>
       <div class="empty-div"></div>
 
       <ng-container *ngIf="incidences$ | async as incidences">

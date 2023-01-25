@@ -13,7 +13,7 @@ import { IonContent } from '@ionic/angular';
     </div>
 
     <div class="container components-background-dark">
-      <h1 class="text-color-dark">{{ 'COMMON.HOME' | translate }}</h1>
+      <h1 class="text-color-gradient">{{ 'COMMON.HOME' | translate }}</h1>
       <div class="empty-div"></div>
 
       <div

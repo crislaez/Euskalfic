@@ -11,3 +11,22 @@
   height: 80vh;
   // z-index: 0 !important;
 }
+
+.notification-wrapper{
+  width: 90%;
+  height: 60px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 8px gray;
+  margin: 0 auto;
+  position: absolute;
+  background: #FFC0CB;
+  z-index: inherit;
+  z-index: 9999;
+  bottom: 30px;
+
+  >p{
+    padding: 10px;
+    color: #8B0000;
+    font-size: 12px;
+  }
+}

@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Camera, CameraActions, fromCamera } from '@euskalfic/shared/camera';
-import { Flow, FlowActions, fromFlow, FlowProperty, FlowGeometry } from '@euskalfic/shared/flow';
+import { Flow, FlowActions, FlowGeometry, FlowProperty, fromFlow } from '@euskalfic/shared/flow';
 import { IncidenceActions, fromIncidence } from '@euskalfic/shared/incidence';
 import { Incidence } from '@euskalfic/shared/incidence/models/index';
 import { gotToTop, trackById } from '@euskalfic/shared/utils/funcionts';
 import { concatLatestFrom } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { Map, icon, marker, polyline, tileLayer } from 'leaflet';
+import { Map, icon, marker, polyline, tileLayer, utm } from 'leaflet';
+import 'leaflet.utm';
 import { Observable, Subject, map, takeUntil, tap } from 'rxjs';
 import { filter, switchMap } from 'rxjs/operators';
 
@@ -20,7 +21,7 @@ import { filter, switchMap } from 'rxjs/operators';
     </div>
 
     <div class="container components-background-dark">
-      <h1 class="text-color-dark">{{ 'COMMON.MAP' | translate }}
+      <h1 class="text-color-gradient">
         {{ (
             getOption === 'incidence' ? 'COMMON.INCIDENCES'
           : getOption === 'camera' ? 'COMMON.CAMERAS'
@@ -35,6 +36,10 @@ import { filter, switchMap } from 'rxjs/operators';
           leaflet
           id="map">
         </div>
+      </div>
+
+      <div class="notification-wrapper">
+        <p>{{ 'COMMON.NOTIFICATION_MESSAGE' | translate }}</p>
       </div>
 
     </div>
@@ -85,9 +90,11 @@ export class MapPage implements OnDestroy {
 
         return (this.getSelectors(incidenceId, cameraId, meterId) as any).pipe(
           tap(item => {
-            // console.log(item)
-            const { latitude = null, longitude = null } = (item as any) || {};
             if(!item) return;
+            const { latitude:fromUtmLatitude = 0, longitude:fromUtmLongitude = 0 } = this.getFromUtmCoords(item) || {};
+            const latitude = this.getOption === 'camera' ? fromUtmLatitude : (item as any)?.latitude ?? null;
+            const longitude = this.getOption === 'camera' ? fromUtmLongitude : (item as any)?.longitude ?? null;
+
             if(latitude?.toString() === '0.0' && longitude?.toString() === '0.0') return;
 
             setTimeout(() => {
@@ -187,7 +194,8 @@ export class MapPage implements OnDestroy {
 
   // CREATE INCIDENCE POPUP
   cameraPopUp(camera: Camera): string {
-    const { address = null, cameraName = null, kilometer = null,latitude = null, longitude = null, road = null } = camera || {}
+    const { address = null, cameraName = null, kilometer = null, road = null } = camera || {};
+    const { latitude = 0, longitude = 0 } = this.getFromUtmCoords(camera) || {};
     return `
       <b>Ubicacion:</b> (${address || '-' })<br /><br />
       <b>Nombre camara:</b> ${cameraName || '-'}<br />
@@ -246,5 +254,16 @@ export class MapPage implements OnDestroy {
       </a>
     `;
   }
+
+
+  getFromUtmCoords(item: any): {longitude: number | number[], latitude: number | number[]} {
+    const { latitude:y = 0, longitude:x = 0 } = item|| {};
+    const data = utm({x, y, zone: 30, band: 'N', southHemi: false });
+    return {
+      longitude: data?.latLng()?.lng ?? 0,
+      latitude: data?.latLng()?.lat ?? 0,
+    };
+  }
+
 
 }

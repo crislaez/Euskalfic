@@ -340,6 +340,12 @@ cdk-virtual-scroll-viewport {
   color: $primary;
 }
 
+.text-color-gradient{
+  background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
 .text-color-sixtiary{
   color: $sixtiary;
 }

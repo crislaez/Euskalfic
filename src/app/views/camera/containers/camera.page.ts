@@ -22,7 +22,7 @@ import * as fromCameraPage from '../selectors/camera-page.selectros';
     </div>
 
     <div class="container components-background-dark">
-      <h1 class="text-color-dark">{{ 'COMMON.CAMERAS' | translate }}</h1>
+      <h1 class="text-color-gradient">{{ 'COMMON.CAMERAS' | translate }}</h1>
       <div class="empty-div"></div>
 
       <ng-container *ngIf="cameras$ | async as cameras">

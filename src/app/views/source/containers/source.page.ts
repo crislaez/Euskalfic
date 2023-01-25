@@ -17,7 +17,7 @@ import { componentState } from '@euskalfic/shared/utils/models';
     </div>
 
     <div class="container components-background-dark">
-      <h1 class="text-color-dark">{{ 'COMMON.FLOWS' | translate }}</h1>
+      <h1 class="text-color-gradient">{{ 'COMMON.FLOWS' | translate }}</h1>
       <div class="empty-div"></div>
 
       <ng-container *ngIf="source$ | async as source">
@@ -56,7 +56,7 @@ import { componentState } from '@euskalfic/shared/utils/models';
 
       <!-- LOADER  -->
       <ng-template #loader>
-        <app-skeleton-card *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]; trackBy: trackById"></app-skeleton-card>
+        <app-skeleton-card *ngFor="let item of [1,2,3,4,5,6,7]; trackBy: trackById"></app-skeleton-card>
       </ng-template>
     </div>
 

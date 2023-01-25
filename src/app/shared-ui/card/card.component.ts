@@ -34,7 +34,7 @@ import { errorImage, sliceDate, sliceText } from '@euskalfic/shared/utils/funcio
       </div>
 
       <ng-container *ngIf="from !== 'source'">
-        <div class="set-item-types">
+        <div class="set-item-types" [ngClass]="{'w-52':['cameras']?.includes(from), 'w-94': !['cameras']?.includes(from)}">
           <ion-chip class="text-color-light">
             <ion-label>
               {{
@@ -64,11 +64,11 @@ import { errorImage, sliceDate, sliceText } from '@euskalfic/shared/utils/funcio
             <ion-img loading="lazy" [src]="$any(item)?.urlImage || defaultImage" [alt]="$any(item)?.urlImage" (ionError)="errorImage($event)"></ion-img>
           </ion-avatar>
 
-          <div *ngIf="['incidences','flows']?.includes(from)" class="icon-wrapper displays-center">
+          <!-- <div *ngIf="['incidences','flows']?.includes(from)" class="icon-wrapper displays-center">
             <ion-chip *ngIf="['incidences']?.includes(from)" class="text-color-light"> <ion-label>{{ $any(item)?.autonomousRegion || '-' }}</ion-label></ion-chip>
             <ion-chip *ngIf="['incidences']?.includes(from)" class="text-color-light"> <ion-label>{{ $any(item)?.province || '-' }}</ion-label></ion-chip>
             <ion-chip *ngIf="['flows']?.includes(from)" class="text-color-light heigth-min"> <ion-label>{{ $any(item)?.properties?.description || '-' }}</ion-label></ion-chip>
-          </div>
+          </div> -->
         </div>
       </ng-container>
     </div>

@@ -21,7 +21,7 @@ import { Source, fromSource } from '@euskalfic/shared/source';
     </div>
 
     <div class="container components-background-dark">
-      <h1 class="text-color-dark">{{ 'COMMON.FLOWS' | translate }}</h1>
+      <h1 class="text-color-gradient">{{ 'COMMON.FLOWS' | translate }}</h1>
       <div class="empty-div"></div>
 
       <ng-container *ngIf="flows$ | async as flows">
